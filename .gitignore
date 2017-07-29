@@ -1,0 +1,10 @@
+.pioenvs
+.piolibdeps
+.clang_complete
+.gcc-flags.json
+.DS_STORE
+board/
+src/config/general.h
+src/config/wifinetworks.h
+
+*.job
