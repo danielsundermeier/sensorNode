@@ -14,41 +14,42 @@ Sensors for every room for Home Assistant that fits into an outlet with a Webint
 
 ## Sensors
 
-Temperature - check
-Humidity - check
-Motion - waiting for delivery
-Light - check
+* Temperature - check
+* Humidity - check
+* Motion - waiting for delivery
+* Light - check
 
 ## LED
 
-MQTT controlled LED
+* MQTT controlled RGB LED
 
 ## MQTT 
 
-Sending Sensor values - check
-Recieving commands for the LED
+* Sending Sensor values - check
+* Recieving commands for the LED
 
 ## Webserver
 
-changing Hostname - check 
-mDNS nor working (Hostname.local)
+* changing Hostname - check 
+* mDNS nor working (Hostname.local)
+* Style
 
 ## OTA
 
-Does not work correctly
+* Does not work correctly
 
 ## Settings
 
-save Hostname permanently - check
-save other settings
-Multiple Wifi Networks
-MQTT IP, User, Password, Command Topic, State Topic
-Available Sensors
+* save Hostname permanently - check
+* save other settings
+* Multiple Wifi Networks
+* MQTT IP, User, Password, Command Topic, State Topic
+* Available Sensors
 
 ## Board
 
-Like the ESPURNA-Board without the Relay ( and POW?) but with header pins for the GPIO Pins of the esp12 to connect the sensors
+* Like the ESPURNA-Board without the Relay ( and POW?) but with header pins for the GPIO Pins of the esp12 to connect the sensors
 
 ## Enclosure
 
-Similar to an in-wall switch or motionsensor 3D printed
+* Similar to an in-wall switch or motionsensor 3D printed
