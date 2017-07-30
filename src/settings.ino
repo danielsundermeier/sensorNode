@@ -106,7 +106,7 @@ void settingsSetStandard() {
         Serial.print("aus Speicher ");
     }
     Serial.println(getSetting("hostname"));
-    if (setStandard = true) {
+    if (setStandard == true) {
         Serial.println("Standard Einstellungen werden gespeichert");
         saveSettings();
     }

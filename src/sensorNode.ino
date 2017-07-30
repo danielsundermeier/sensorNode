@@ -2,7 +2,7 @@
 #include <ESP8266mDNS.h>
 #include "config/all.h"
 
-char wiFiHostname[ ] = "SensorNode";
+char wiFiHostname[ ] = "SensorNodeDEV";
 
 template<typename T> bool setSetting(const String& key, T value);
 template<typename T> String getSetting(const String& key, T defaultValue);
@@ -48,6 +48,7 @@ void setup() {
     webSetup();
     otaSetup();
     mqttSetup();
+    
 }
 
 void loop() {

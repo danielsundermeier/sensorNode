@@ -14,37 +14,42 @@ Sensors for every room for Home Assistant that fits into an outlet with a Webint
 
 ## Sensors
 
-* Temperature - check
-* Humidity - check
-* Motion - waiting for delivery
-* Light - check
+- [x] Temperature
+- [x] Humidity
+- [ ] Motion - waiting for delivery
+- [x] Light
 
 ## LED
 
-* MQTT controlled RGB LED
+- [ ] MQTT controlled RGB LED - waiting for delivery
+
+## WiFi
+
+- [x] WiFiManager: Connect from saved values. If no connection possible -> captive gateway
 
 ## MQTT 
 
-* Sending Sensor values - check
-* Recieving commands for the LED
+- [x] Sending Sensor values - check
+- [ ] Start MQTT only if Settings are set
+- [ ] Username und Passwort -> optional
+- [ ] Recieving commands for the LED
 
 ## Webserver
 
-* changing Hostname - check 
-* mDNS nor working (Hostname.local)
-* Style
+- [x] Style
+- [x] Changing Hostname
+- [x] MQTT Settings
+- [ ] No restart after saving
 
 ## OTA
 
-* Does not work correctly
+* Sometimes it works...any ideas?
 
 ## Settings
 
-* save Hostname permanently - check
-* save other settings
-* Multiple Wifi Networks
-* MQTT IP, User, Password, Command Topic, State Topic
-* Available Sensors
+- [x] Save Hostname permanently
+- [x] Save MQTT Settings permanently
+- [ ] Available Sensors
 
 ## Board
 

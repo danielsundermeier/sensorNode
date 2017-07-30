@@ -33,14 +33,14 @@ void webSetup() {
         html += "<h1>Einstellungen</h1>";
         html += "</p><form method='post' action='save'>";
         html += "<h2>Allgemein</h2>";
-        html += "<label>Hostname</label><input name='hostname' type='text' value='"+String(getSetting("hostname").c_str())+"' length=32><br>";
+        html += "<label>Hostname</label><input name='hostname' type='text' value='"+String(getSetting("hostname").c_str())+"'><br>";
         html += "<h2>MQTT</h2>";
-        html += "<label>Server</label><input name='mqtt_server' type='text' value='"+String(getSetting("mqtt_server").c_str())+"' length=32><br>";
-        html += "<label>User</label><input name='mqtt_user' type='text' value='"+String(getSetting("mqtt_user").c_str())+"' length=32><br>";
-        html += "<label>Passwort</label><input name='mqtt_password' type='password' value='"+String(getSetting("mqtt_password").c_str())+"' length=32><br>";
-        html += "<label>Port</label><input name='mqtt_port' type='text' value='"+String(getSetting("mqtt_port").c_str())+"' length=32><br>";
-        html += "<label>Topic Status</label><input name='mqtt_topic_stat' type='text' value='"+String(getSetting("mqtt_topic_stat").c_str())+"' length=64><br>";
-        html += "<label>Topic Command</label><input name='mqtt_topic_cmnd' type='text' value='"+String(getSetting("mqtt_topic_cmnd").c_str())+"' length=64><br>";
+        html += "<label>Server</label><input name='mqtt_server' type='text' value='"+String(getSetting("mqtt_server").c_str())+"'><br>";
+        html += "<label>User</label><input name='mqtt_user' type='text' value='"+String(getSetting("mqtt_user").c_str())+"'><br>";
+        html += "<label>Passwort</label><input name='mqtt_password' type='password' value='"+String(getSetting("mqtt_password").c_str())+"'><br>";
+        html += "<label>Port</label><input name='mqtt_port' type='text' value='"+String(getSetting("mqtt_port").c_str())+"'><br>";
+        html += "<label>Topic Status</label><input name='mqtt_topic_stat' type='text' value='"+String(getSetting("mqtt_topic_stat").c_str())+"'><br>";
+        html += "<label>Topic Command</label><input name='mqtt_topic_cmnd' type='text' value='"+String(getSetting("mqtt_topic_cmnd").c_str())+"'><br>";
         html += "<br><input type='submit'></form>";
 
         html += FPSTR(SERVER_HTTP_END);
@@ -55,13 +55,15 @@ void webSetup() {
         for (int i=0;i<(server.args()-1);i++) {
             html += server.argName(i)+ ": "+server.arg(i)+"<br>"; 
         }
-        html = "<br><br><a href='/'>zurück</a>'";
+        html += "<br><br><a href='/'>zurück</a>'";
 
         html += FPSTR(SERVER_HTTP_END);
 
         server.send(200, "text/html", html); 
         for (int i=0;i<(server.args()-1);i++) {
-            setSetting(server.argName(i), server.arg(i));
+            if (getSetting(server.argName(i)) != server.arg(i)) {
+                setSetting(server.argName(i), server.arg(i));
+            }
         }
         //setSetting("hostname", server.arg("hostname"));
         saveSettings();
