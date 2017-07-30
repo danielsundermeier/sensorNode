@@ -92,6 +92,24 @@ void settingsSetup() {
     DEBUG_MSG("[SETTINGS] EEPROM size: %d bytes\n", SPI_FLASH_SEC_SIZE);
     DEBUG_MSG("[SETTINGS] Settings size: %d bytes\n", settingsSize());
 
+    settingsSetStandard();
+}
+
+void settingsSetStandard() {
+    bool setStandard = false;
+    Serial.print("Hostname: "); 
+    if (getSetting("hostname").length() == 0) {
+        setSetting("hostname", getIdentifier());
+        setStandard = true;
+    }
+    else {
+        Serial.print("aus Speicher ");
+    }
+    Serial.println(getSetting("hostname"));
+    if (setStandard = true) {
+        Serial.println("Standard Einstellungen werden gespeichert");
+        saveSettings();
+    }
 }
 
 void settingsLoop() {

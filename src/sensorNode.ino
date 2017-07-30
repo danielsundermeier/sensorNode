@@ -16,6 +16,7 @@ String getIdentifier() {
 void hardwareSetup() {
     // SERIAL
     Serial.begin(SERIAL_BAUDRATE);
+    delay(1000);
     Serial.println("Booting");
 
     // PIN MODE
@@ -29,6 +30,11 @@ void software_Reset() {
     ESP.reset(); 
 }
 
+void restart() {
+    Serial.println("restarting..");
+    ESP.restart();
+}
+
 // -----------------------------------------------------------------------------
 // BOOTING
 // -----------------------------------------------------------------------------
@@ -37,29 +43,18 @@ void setup() {
     
     hardwareSetup();
     settingsSetup();
-    Serial.print("Hostname: "); 
-    if (getSetting("hostname").length() == 0) {
-        setSetting("hostname", getIdentifier());
-        saveSettings();
-    }
-    else {
-        Serial.print("aus Speicher ");
-    }
-    Serial.println(getSetting("hostname"));
-    
     sensorsSetup();
-    if (wifiSetup()) {
-        mdnsSetup(); // hostname.local
-        otaSetup();
-        mqttSetup();
-    }
+    wifiSetup();
+    webSetup();
+    otaSetup();
+    mqttSetup();
 }
 
 void loop() {
 
     sensorsLoop();
-    mqttLoop();
     webLoop();
+    mqttLoop();
     otaLoop();
     
 }
