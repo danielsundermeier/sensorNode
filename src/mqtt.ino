@@ -19,6 +19,8 @@ char message_buff[100];
 
 const int BUFFER_SIZE = 300;
 
+long lastReconnectAttempt = 0;
+
 // -----------------------------------------------------------------------------
 // MQTT
 // -----------------------------------------------------------------------------
@@ -71,17 +73,20 @@ void sendState() {
 }
 
 void mqttconnect() {
-    Serial.print("Attempting MQTT connection...");
-    // Attempt to connect
-    if (mqttClient.connect(getSetting("hostname").c_str(), getSetting("mqtt_user").c_str(), getSetting("mqtt_password").c_str())) {
-        Serial.println("connected");
-        mqttClient.subscribe(MQTT_TOPIC_CMND);
-        //setColor(0, 0, 0);
-        sendState();
-    } else {
-        Serial.print("failed, rc=");
-        Serial.print(mqttClient.state());
-    }
+	long now = millis();
+	if (now - lastReconnectAttempt > 3000) {
+	    lastReconnectAttempt = now;
+	    if (mqttClient.connect(getSetting("hostname").c_str(), getSetting("mqtt_user").c_str(), getSetting("mqtt_password").c_str())) {
+		    lastReconnectAttempt = 0;
+		    Serial.println("connected");
+		    mqttClient.subscribe(MQTT_TOPIC_CMND);
+		    //setColor(0, 0, 0);
+		    sendState();
+	    } else {
+	        Serial.print("failed, rc=");
+	        Serial.print(mqttClient.state());
+	    }
+	}
 }
 
 void mqttSetup() {
