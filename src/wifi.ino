@@ -11,6 +11,7 @@ WIFI MODULE
 
 bool wifiSetup() {
     WiFiManager wifiManager;
+    wifiManager.setConfigPortalTimeout(180);
     wifiManager.autoConnect();
 }
 

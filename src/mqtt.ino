@@ -71,22 +71,17 @@ void sendState() {
 }
 
 void mqttconnect() {
-	while (!mqttClient.connected()) {
-	    Serial.print("Attempting MQTT connection...");
-	    // Attempt to connect
-	    if (mqttClient.connect(getSetting("hostname").c_str(), getSetting("mqtt_user").c_str(), getSetting("mqtt_password").c_str())) {
-	        Serial.println("connected");
-	        mqttClient.subscribe(MQTT_TOPIC_CMND);
-	        //setColor(0, 0, 0);
-	        sendState();
-	    } else {
-	        Serial.print("failed, rc=");
-	        Serial.print(mqttClient.state());
-	        Serial.println(" try again in 5 seconds");
-	        // Wait 5 seconds before retrying
-	        delay(5000);
-	    }
-	}
+    Serial.print("Attempting MQTT connection...");
+    // Attempt to connect
+    if (mqttClient.connect(getSetting("hostname").c_str(), getSetting("mqtt_user").c_str(), getSetting("mqtt_password").c_str())) {
+        Serial.println("connected");
+        mqttClient.subscribe(MQTT_TOPIC_CMND);
+        //setColor(0, 0, 0);
+        sendState();
+    } else {
+        Serial.print("failed, rc=");
+        Serial.print(mqttClient.state());
+    }
 }
 
 void mqttSetup() {
@@ -102,10 +97,6 @@ void mqttSetup() {
 		Parts[Part] += c - '0';
 	}
 	IPAddress mqttServer( Parts[0], Parts[1], Parts[2], Parts[3] );
-	Serial.print("String: ");
-	Serial.println(getSetting("mqtt_server"));
-	Serial.print("IP: ");
-	Serial.println(mqttServer);
 	mqttClient.setServer(mqttServer, getSetting("mqtt_port").toInt());
 	mqttClient.setCallback(callback);
 	mqttconnect();
