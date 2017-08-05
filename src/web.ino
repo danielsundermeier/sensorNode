@@ -39,8 +39,8 @@ void webSetup() {
         html += "<label>User</label><input name='mqtt_user' type='text' value='"+String(getSetting("mqtt_user").c_str())+"'><br>";
         html += "<label>Passwort</label><input name='mqtt_password' type='password' value='"+String(getSetting("mqtt_password").c_str())+"'><br>";
         html += "<label>Port</label><input name='mqtt_port' type='text' value='"+String(getSetting("mqtt_port").c_str())+"'><br>";
-        html += "<label>Topic Status</label><input name='mqtt_topic_stat' type='text' value='"+String(getSetting("mqtt_topic_stat").c_str())+"'><br>";
-        html += "<label>Topic Command</label><input name='mqtt_topic_cmnd' type='text' value='"+String(getSetting("mqtt_topic_cmnd").c_str())+"'><br>";
+        html += "<label>Topic Status</label><input name='mqtt_stat' type='text' value='"+String(getSetting("mqtt_stat").c_str())+"'><br>";
+        html += "<label>Topic Command</label><input name='mqtt_cmnd' type='text' value='"+String(getSetting("mqtt_cmnd").c_str())+"'><br>";
         html += "<br><input type='submit'></form>";
 
         html += FPSTR(SERVER_HTTP_END);

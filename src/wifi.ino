@@ -10,8 +10,11 @@ WIFI MODULE
 #include <WiFiManager.h>
 
 bool wifiSetup() {
+	WiFi.persistent(false);
     WiFiManager wifiManager;
-    wifiManager.setConfigPortalTimeout(180);
+    if (WiFi.SSID()) {
+    	wifiManager.setConnectTimeout(180);
+    }
     wifiManager.autoConnect();
 }
 
