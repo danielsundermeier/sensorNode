@@ -16,12 +16,12 @@ Sensors for every room for Home Assistant that fits into an outlet with a Webint
 
 - [x] Temperature
 - [x] Humidity
-- [ ] Motion - waiting for delivery
+- [x] Motion
 - [x] Light
 
 ## LED
 
-- [ ] MQTT controlled RGB LED - waiting for delivery
+- [x] MQTT controlled RGB LED - slow responses
 
 ## WiFi
 
@@ -32,14 +32,14 @@ Sensors for every room for Home Assistant that fits into an outlet with a Webint
 - [x] Sending Sensor values - check
 - [ ] Start MQTT only if Settings are set
 - [ ] Username und Passwort -> optional
-- [ ] Recieving commands for the LED
+- [x] Recieving commands for the LED
 
 ## Webserver
 
 - [x] Style
 - [x] Changing Hostname
 - [x] MQTT Settings
-- [ ] No restart after saving
+- [x] No restart after saving
 
 ## OTA
 
