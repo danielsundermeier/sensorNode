@@ -13,31 +13,31 @@ WiFiClient espClient;
 PubSubClient mqttClient(espClient);
 
 /**************************** PIN DEFINITIONS ********************************************/
-const int redPin = D0;
-const int greenPin = D1;
-const int bluePin = D2;
+const int redPin 			= D0;
+const int greenPin 			= D1;
+const int bluePin 			= D2;
 
 /**************************** VARS           ********************************************/
 
-const char* on_cmd = "ON";
-const char* off_cmd = "OFF";
+const char* on_cmd 			= "ON";
+const char* off_cmd 		= "OFF";
 
 char message_buff[100];
 
-const int BUFFER_SIZE = 300;
+const int BUFFER_SIZE 		= 300;
 
-long lastReconnectAttempt = 0;
+long lastReconnectAttempt 	= 0;
 
 /******************************** GLOBALS for fade/flash *******************************/
-byte red = 255;
-byte green = 255;
-byte blue = 255;
-byte brightness = 255;
+byte red 					= 255;
+byte green 					= 255;
+byte blue 					= 255;
+byte brightness 			= 255;
 
-byte flashRed = red;
-byte flashGreen = green;
-byte flashBlue = blue;
-byte flashBrightness = brightness;
+byte flashRed 				= red;
+byte flashGreen 			= green;
+byte flashBlue 				= blue;
+byte flashBrightness 		= brightness;
 
 
 

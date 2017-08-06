@@ -12,36 +12,36 @@ DHT dht(DHTPIN, DHTTYPE);
 float ldrValue;
 int LDR;
 float calcLDR;
-float diffLDR = 25;
+float diffLDR                 = 25;
 
-float diffTEMP = 0.2;
+float diffTEMP                = 0.2;
 float tempValue;
 
-float diffHUM = 1;
+float diffHUM                 = 1;
 float humValue;
 
 int pirValue;
 int pirStatus;
 String motionStatus;
 
-byte realRed = 0;
-byte realGreen = 0;
-byte realBlue = 0;
+byte realRed                  = 0;
+byte realGreen                = 0;
+byte realBlue                 = 0;
 
-bool stateOn = false;
+bool stateOn                  = false;
 
-bool startFade = false;
-unsigned long lastLoop = 0;
-int transitionTime = 0;
-bool inFade = false;
-int loopCount = 0;
+bool startFade                = false;
+unsigned long lastLoop        = 0;
+int transitionTime            = 0;
+bool inFade                   = false;
+int loopCount                 = 0;
 int stepR, stepG, stepB;
 int redVal, grnVal, bluVal;
 
-bool flash = false;
-bool startFlash = false;
-int flashLength = 0;
-unsigned long flashStartTime = 0;
+bool flash                    = false;
+bool startFlash               = false;
+int flashLength               = 0;
+unsigned long flashStartTime  = 0;
 
 
 // -----------------------------------------------------------------------------
