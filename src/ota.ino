@@ -14,7 +14,7 @@ Copyright (C)  by Daniel Sundermeier <daniel at hof-sundermeier dot de>
 
 void otaConfig() {
     ArduinoOTA.setPort(OTA_PORT);
-    ArduinoOTA.setHostname(getSetting("hostname").c_str());
+    ArduinoOTA.setHostname(settings.hostname.c_str());
     ArduinoOTA.setPassword("admin");
 }
 

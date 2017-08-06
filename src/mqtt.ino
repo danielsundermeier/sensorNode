@@ -45,6 +45,10 @@ byte flashBrightness = brightness;
 // MQTT
 // -----------------------------------------------------------------------------
 
+void mqttDisconnect() {
+	mqttClient.disconnect();
+}
+
 void callback(char* topic, byte* payload, unsigned int length) {
 	Serial.print("Message arrived [");
 	Serial.print(topic);
@@ -104,11 +108,10 @@ void sendState() {
 
 
 	char buffer[root.measureLength() + 1];
-	Serial.print(getSetting("mqtt_stat")+": ");
 	root.printTo(buffer, sizeof(buffer));
 
 	Serial.println(buffer);
-	int published = mqttClient.publish(getSetting("mqtt_stat").c_str(), buffer, true);
+	int published = mqttClient.publish(settings.mqtt_stat.c_str(), buffer, true);
 	if (published == 0) {
 		Serial.println("Daten konnten nicht gesendet werden.");
 	}
@@ -119,10 +122,10 @@ void mqttconnect() {
 	long now = millis();
 	if (now - lastReconnectAttempt > (MQTT_RECONECT_TIMEOUT * 1000)) {
 	    lastReconnectAttempt = now;
-	    if (mqttClient.connect(getSetting("hostname").c_str(), getSetting("mqtt_user").c_str(), getSetting("mqtt_password").c_str())) {
+	    if (mqttClient.connect(settings.hostname.c_str(), settings.mqtt_user.c_str(), settings.mqtt_password.c_str())) {
 		    lastReconnectAttempt = 0;
 		    Serial.println("connected");
-		    mqttClient.subscribe(MQTT_TOPIC_CMND);
+		    if (settings.mqtt_cmnd.length() > 0) mqttClient.subscribe(settings.mqtt_cmnd.c_str());
 		    setColor(0, 0, 0);
 		    sendState();
 	    } else {
@@ -223,8 +226,8 @@ void setColor(int inR, int inG, int inB) {
 void mqttSetup() {
 	int Parts[4] = {0,0,0,0};
 	int Part = 0;
-	for ( int i=0; i<getSetting("mqtt_server").length(); i++ ) {
-		char c = getSetting("mqtt_server")[i];
+	for ( int i=0; i<settings.mqtt_server.length(); i++ ) {
+		char c = settings.mqtt_server[i];
 		if ( c == '.' ) {
 			Part++;
 			continue;
@@ -233,7 +236,7 @@ void mqttSetup() {
 		Parts[Part] += c - '0';
 	}
 	IPAddress mqttServer( Parts[0], Parts[1], Parts[2], Parts[3] );
-	mqttClient.setServer(mqttServer, getSetting("mqtt_port").toInt());
+	mqttClient.setServer(mqttServer, settings.mqtt_port.toInt());
 	mqttClient.setCallback(callback);
 	mqttconnect();
 }

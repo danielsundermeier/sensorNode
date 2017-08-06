@@ -110,6 +110,21 @@ void settingsSetStandard() {
         Serial.println("Standard Einstellungen werden gespeichert");
         saveSettings();
     }
+
+    settingsSet();
+}
+
+void settingsSet() {
+    // Allgemein
+    settings.hostname       = getSetting("hostname");
+
+    // MQTT
+    settings.mqtt_server    = getSetting("mqtt_server");
+    settings.mqtt_user      = getSetting("mqtt_user");
+    settings.mqtt_password  = getSetting("mqtt_password");
+    settings.mqtt_port      = getSetting("mqtt_port");
+    settings.mqtt_stat      = getSetting("mqtt_stat");
+    settings.mqtt_cmnd      = getSetting("mqtt_cmnd");
 }
 
 void settingsLoop() {

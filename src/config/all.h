@@ -2,4 +2,4 @@
 #include "debug.h"
 #include "general.h"
 #include "sensors.h"
-#include "wifinetworks.h"
+#include "settings.h"
