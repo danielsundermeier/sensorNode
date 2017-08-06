@@ -2,8 +2,6 @@
  *
 OTA MODULE
 
-Copyright (C)  by Daniel Sundermeier <daniel at hof-sundermeier dot de>
-
 */
 
 #include "ArduinoOTA.h"
